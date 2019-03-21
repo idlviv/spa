@@ -1,0 +1,31 @@
+<nav fxLayout="row" fxLayoutAlign="center center">
+  <div class="logo" fxFlex="20">Logo</div>
+  <div fxFlex></div>
+
+  <ul fxFlex="50" fxLayout="row" fxLayoutAlign="center center">
+    <li *ngFor="let section of sections; let i = index;" class="mat-"
+    [ngClass]="{'activeSection': scrolledSection === i}" fxFlex>
+    <a mat-button (click)="scrollTo('section' + i)">{{section}}</a>
+    
+  </li>
+  </ul>
+</nav>
+
+<main>
+
+  <section *ngFor="let section of sections; let i = index;"
+    appScrolling (scrollSection)="onScrollSection(i)" [attr.id]="'section' + i" [attr.jjj]="i">
+          <p class="mat-body-1">
+        {{section}}
+          </p>
+
+  </section>
+  <!-- <section>
+    
+    </section>
+    <section>
+    
+      </section> -->
+</main>
+
+<footer></footer>
