@@ -1,0 +1,12 @@
+{
+    "name": "SPA",
+    "short_name": "SPA",
+    "theme_color": "#607d8b",
+    "background_color": "#607d8b",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+     
+    ]
+  }
