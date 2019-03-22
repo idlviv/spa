@@ -1,4 +1,5 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
+import { config } from 'src/app/app.config';
 
 @Component({
   selector: 'app-landing',
@@ -8,7 +9,7 @@ import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 export class LandingComponent implements OnInit {
   el: ElementRef;
   scrolledSection = 0;
-  sections = ['section0', 'section1', 'section2'];
+  sections = config.sections;
   constructor() { }
 
   ngOnInit() {

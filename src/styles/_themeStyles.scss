@@ -1,0 +1,159 @@
+@import './material'; 
+
+// current theme styles (dark or light)
+
+// get variables from current theme (dark or light)
+$primary: map-get($main-theme, primary);
+$accent: map-get($main-theme, accent);
+$warn: map-get($main-theme, warn);
+$foreground: map-get($main-theme, foreground);
+$background: map-get($main-theme, background);
+
+// set custom variables
+$muted: mat-color($foreground, secondary-text);
+$muted-strong: mat-color($foreground, disabled-text);
+$background-lighter: mat-color($background, background) !important;
+$background-darker: mat-color($background, status-bar) !important;
+
+$outerSpace: #424651;
+$independece: rgb(74, 78, 105);
+$romanSilver: #848C8E;
+$glitter: #E7ECEF;
+$babyPowder: #FBFEFB;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: $mainFontFamily;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.muted {
+  color: $muted;
+}
+
+.primary {
+  color: mat-color($primary);
+}
+
+a, a:visited, a:hover, a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+nav.top {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0,0,0,0);
+
+  .logo {
+      padding: 0 15px;
+  }
+  
+  ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      padding-inline-start: 0;
+      height: 100%;
+      li {
+          padding: 0 5px;
+          height: 100%;
+          display : flex;
+          align-items : center; // vertical align
+          a, i{
+            color: $muted;
+          }
+          &:hover {
+            a, i{
+              color: mat-color($accent);
+            }
+            // background-color: rgba($independece, .5);
+
+          }
+          &.activeSection i, 
+          &.activeSection a {
+            // background-color: rgba($independece, .7);
+            color: mat-color($primary);
+          }
+          .nav-icon {
+            height: 100%;
+            flex: 0 0 60px;
+            display : flex;
+            align-items : center; // vertical align
+            justify-content: center; // horizontal align
+            color: mat-color($foreground, text);
+            padding-right: 5px;
+          }
+
+          a {
+            flex: 0 0 calc(100% - 40px);
+            // text-align: center;
+            color: mat-color($foreground, text);
+          }
+      }
+  }
+}
+
+nav.side {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  position: fixed;
+  width: 60px;
+  height: 100vh;
+  background-color: rgba(0,0,0,0);
+  li {
+    a {
+      opacity: 0;
+    }
+    &:hover {
+    a, i{
+      color: mat-color($accent);
+      opacity: 1;
+    }
+    // background-color: rgba($independece, .5);
+
+  }
+    &.activeSection {
+    background-color: rgba($independece, .8);
+    i, a {
+      color: mat-color($primary);
+      opacity: 1;
+    }
+  }
+  }
+
+}
+
+main section {
+  padding: 70px 0 0 100px;
+  height: 100vh;
+  background-color: $background-lighter;
+  &:nth-child(even) {
+      background-color: $background-darker;
+  }
+}
+
+// .activeSection {
+//   color: red;
+// }
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.background-logo {
+  background: url('/assets/logo.jpg') center center / 100% no-repeat #FFF;
+}
+
+.background-footer {
+  
+}
