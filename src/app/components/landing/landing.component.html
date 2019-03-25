@@ -18,18 +18,20 @@
 
 <main>
 
-    <!-- <nav class="side">
-        <ul fxFlex="50" fxLayout="column">
+    <nav class="side">
+        <ul fxLayout="column">
             <li *ngFor="let section of sections; let i = index;" class="mat-body-1 cursor-pointer"
-              [ngClass]="{'activeSection': scrolledSection === i}" fxFlex fxLayout="row"
+              [ngClass]="{'activeSection': scrolledSection === i}"
               (click)="scrollTo('section' + i)">
-              <div class="nav-icon">
+              <div class="nav-icon" fxFlex="60px">
                 <span><i [class]="section.icon"></i></span> 
               </div>
-              <a>{{section.name}}</a>
+              <div class="nav-text" fxFlex="calc(100% - 60px)">
+                <a>{{section.name}}</a>
+              </div>
             </li>
           </ul>
-    </nav> -->
+    </nav>
 
   <section *ngFor="let section of sections; let i = index;" 
     appScrolling (scrollSection)="onScrollSection(i)"
