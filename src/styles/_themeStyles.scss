@@ -51,62 +51,113 @@ a:active {
   color: inherit;
 }
 
-nav.top {
+.header {
   position: fixed;
   width: 100%;
   height: 60px;
   background-color: rgba(0, 0, 0, 0);
   padding: 0 20px;
-
-  .logo {
+  &__logo {
     padding: 0 15px;
   }
+}
 
+.nav {
+  padding: 0;
+  margin: 0;
+  height: 100%;
   ul {
-    padding: 0;
-    margin: 0;
     list-style: none;
     padding-inline-start: 0;
+  }
+  &__item {
+    padding: 0 5px;
     height: 100%;
-    li {
-      padding: 0 5px;
-      height: 100%;
-      display: flex;
-      align-items: center; // vertical align
-      a,
-      i {
-        color: $muted;
-      }
-      &:hover {
-        a,
-        i {
-          color: mat-color($accent);
-        }
-        // background-color: rgba($independece, .5);
-      }
-      &.activeSection i,
-      &.activeSection a {
-        // background-color: rgba($independece, .7);
-        color: mat-color($primary);
-      }
-      .nav-icon {
-        height: 100%;
-        flex: 0 0 60px;
-        display: flex;
-        align-items: center; // vertical align
-        justify-content: center; // horizontal align
-        color: mat-color($foreground, text);
-        padding-right: 5px;
-      }
-
-      a {
-        flex: 0 0 calc(100% - 40px);
-        // text-align: center;
-        color: mat-color($foreground, text);
-      }
+    display: flex;
+    align-items: center; // vertical align
+    &:hover {
+      color: mat-color($accent);
     }
   }
+  &__icon, 
+  &__text {
+    color: $muted;
+    &.activeSection {
+      color: mat-color($primary);
+    }
+  }
+  &__icon {
+    height: 100%;
+    flex: 0 0 60px;
+    display: flex;
+    align-items: center; // vertical align
+    justify-content: center; // horizontal align
+    color: mat-color($foreground, text);
+    padding-right: 5px;
+  }
+  &__text {
+    flex: 0 0 calc(100% - 40px);
+    // text-align: center;
+    color: mat-color($foreground, text);
+  }
 }
+
+// nav.top {
+//   position: fixed;
+//   width: 100%;
+//   height: 60px;
+//   background-color: rgba(0, 0, 0, 0);
+//   padding: 0 20px;
+
+//   .logo {
+//     padding: 0 15px;
+//   }
+
+//   ul {
+//     padding: 0;
+//     margin: 0;
+//     list-style: none;
+//     padding-inline-start: 0;
+//     height: 100%;
+//     li {
+//       padding: 0 5px;
+//       height: 100%;
+//       display: flex;
+//       align-items: center; // vertical align
+//       a,
+//       i {
+//         color: $muted;
+//       }
+//       &:hover {
+//         a,
+//         i {
+//           color: mat-color($accent);
+//         }
+//         // background-color: rgba($independece, .5);
+//       }
+//       &.activeSection i,
+//       &.activeSection a {
+//         // background-color: rgba($independece, .7);
+//         color: mat-color($primary);
+//       }
+//       .nav-icon {
+//         height: 100%;
+//         flex: 0 0 60px;
+//         display: flex;
+//         align-items: center; // vertical align
+//         justify-content: center; // horizontal align
+//         color: mat-color($foreground, text);
+//         padding-right: 5px;
+//       }
+
+//       a {
+//         flex: 0 0 calc(100% - 40px);
+//         // text-align: center;
+//         color: mat-color($foreground, text);
+//       }
+//     }
+//   }
+// }
 
 nav.side {
   padding-top: 100px;

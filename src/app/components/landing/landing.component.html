@@ -1,42 +1,43 @@
-<nav class="top" fxLayout="row" fxLayoutAlign="center center">
-  <div class="logo" fxFlex="20">Logo</div>
+<header class="header" fxLayout="row" fxLayoutAlign="center center">
+  <div class="header__logo" fxFlex="20">Logo</div>
   <div fxFlex></div>
+  <nav class="header__nav nav" fxFlex="70" fxLayout="row">
+    <ul>
+      <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
+        [ngClass]="{'activeSection': scrolledSection === i}" fxFlex fxLayout="row" (click)="scrollTo('section' + i)">
+        <span class="nav__icon">
+          <i [class]="section.icon"></i>
+        </span>
+        <span class="nav__text">
+          <a>{{section.name}}</a>
+        </span>
+      </li>
+    </ul>
+  </nav>
 
-  <ul fxFlex="50" fxLayout="row">
-    <li *ngFor="let section of sections; let i = index;" class="mat-body-1 cursor-pointer"
-      [ngClass]="{'activeSection': scrolledSection === i}" fxFlex fxLayout="row"
-      (click)="scrollTo('section' + i)">
-      <div class="nav-icon">
-        <span><i [class]="section.icon"></i></span> 
-      </div>
-      <a>{{section.name}}</a>
-    </li>
-  </ul>
-</nav>
+</header>
 
 
 
 <main>
 
-    <nav class="side">
-        <ul fxLayout="column">
-            <li *ngFor="let section of sections; let i = index;" class="mat-body-1 cursor-pointer"
-              [ngClass]="{'activeSection': scrolledSection === i}"
-              (click)="scrollTo('section' + i)">
-              <div class="nav-icon" fxFlex="60px">
-                <span><i [class]="section.icon"></i></span> 
-              </div>
-              <div class="nav-text" fxFlex="calc(100% - 60px)">
-                <a>{{section.name}}</a>
-              </div>
-            </li>
-          </ul>
-    </nav>
+  <nav class="side">
+    <ul fxLayout="column">
+      <li *ngFor="let section of sections; let i = index;" class="mat-body-1 cursor-pointer"
+        [ngClass]="{'activeSection': scrolledSection === i}" (click)="scrollTo('section' + i)">
+        <div class="nav-icon" fxFlex="60px">
+          <span><i [class]="section.icon"></i></span>
+        </div>
+        <div class="nav-text" fxFlex="calc(100% - 60px)">
+          <a>{{section.name}}</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
 
-  <section *ngFor="let section of sections; let i = index;" 
-    appScrolling (scrollSection)="onScrollSection(i)"
-    [ngStyle]="{'background': section.background, 'height': section.height }"
-    [attr.id]="'section' + i" [innerHTML]="section.innerHTML">
+  <section *ngFor="let section of sections; let i = index;" appScrolling (scrollSection)="onScrollSection(i)"
+    [ngStyle]="{'background': section.background, 'height': section.height }" [attr.id]="'section' + i"
+    [innerHTML]="section.innerHTML">
 
   </section>
 </main>
