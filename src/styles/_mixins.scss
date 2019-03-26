@@ -122,3 +122,31 @@ $screen-xl-min: 1920px;
   -o-transform: $value;
   transform: $value;
 }
+
+@mixin animation($value) {
+  animation: $value;
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -ms-animation: $value;
+}
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+
+@mixin radius($amount) {
+  border-radius: $amount;
+  -moz-border-radius: $amount;
+  -webkit-border-radius: $amount;
+}

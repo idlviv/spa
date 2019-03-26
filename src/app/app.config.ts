@@ -4,7 +4,7 @@ export const config = {
             name: 'About',
             innerHTML: '<h1 class="mat-display-2">About</h1><p class="mat-body-1">Some text about</p>',
             icon: 'fas fa-lightbulb fa-2x',
-            background: 'url(\'/assets/logo.jpg\') center center / 100% no-repeat #FFF'
+            background: 'url(\'/assets/logo.jpg\') center center / cover no-repeat #FFF'
         },
         {
             name: 'Projects',

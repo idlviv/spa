@@ -21,18 +21,9 @@ $romanSilver: #848c8e;
 $glitter: #e7ecef;
 $babyPowder: #fbfefb;
 
-* {
-  box-sizing: border-box;
-}
-
 html {
   font-size: 16px;
   font-family: $mainFontFamily;
-}
-
-body {
-  padding: 0;
-  margin: 0;
 }
 
 .muted {
@@ -43,6 +34,10 @@ body {
   color: mat-color($primary);
 }
 
+.accent {
+  color: mat-color($accent);
+}
+
 a,
 a:visited,
 a:hover,
@@ -51,167 +46,115 @@ a:active {
   color: inherit;
 }
 
-.header {
-  position: fixed;
-  width: 100%;
-  height: 60px;
-  background-color: rgba(0, 0, 0, 0);
-  padding: 0 20px;
-  &__logo {
-    padding: 0 15px;
-  }
-}
-
 .nav {
   padding: 0;
   margin: 0;
   height: 100%;
-  ul {
-    list-style: none;
-    padding-inline-start: 0;
-  }
+  list-style: none;
+  padding-inline-start: 0;
+  display: flex;
   &__item {
-    padding: 0 5px;
     height: 100%;
-    display: flex;
     align-items: center; // vertical align
-    &:hover {
-      color: mat-color($accent);
-    }
-  }
-  &__icon, 
-  &__text {
-    color: $muted;
-    &.activeSection {
-      color: mat-color($primary);
-    }
+    display: flex;
   }
   &__icon {
     height: 100%;
     flex: 0 0 60px;
+    min-width: 60px;
     display: flex;
     align-items: center; // vertical align
     justify-content: center; // horizontal align
-    color: mat-color($foreground, text);
     padding-right: 5px;
   }
   &__text {
-    flex: 0 0 calc(100% - 40px);
-    // text-align: center;
-    color: mat-color($foreground, text);
+    height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center; // vertical align
+    justify-content: start; // horizontal align
+    padding-right: 10px;
   }
 }
 
-// nav.top {
-//   position: fixed;
-//   width: 100%;
-//   height: 60px;
-//   background-color: rgba(0, 0, 0, 0);
-//   padding: 0 20px;
+.header {
+  position: fixed;
+  width: 100%;
+  height: 60px;
+  @include lt-md {
+    height: 40px;
+  }
+  background-color: rgba(mat-color($background, background), 0.8);
+  padding: 0 20px;
+  &__item {
+    padding: 0 15px;
+  }
+}
 
-//   .logo {
-//     padding: 0 15px;
-//   }
+.nav_type_header {
+  flex-direction: row;
+  .nav {
+    &__item {
+      padding: 0 5px;
+      flex: 1 1 auto;
+      color: mat-color($primary);
+      &:hover {
+        color: mat-color($primary, 900);
+      }
+      &_active {
+        color: mat-color($primary, 300);
+      }
+    }
+  }
+}
 
-//   ul {
-//     padding: 0;
-//     margin: 0;
-//     list-style: none;
-//     padding-inline-start: 0;
-//     height: 100%;
-//     li {
-//       padding: 0 5px;
-//       height: 100%;
-//       display: flex;
-//       align-items: center; // vertical align
-//       a,
-//       i {
-//         color: $muted;
-//       }
-//       &:hover {
-//         a,
-//         i {
-//           color: mat-color($accent);
-//         }
-//         // background-color: rgba($independece, .5);
-//       }
-//       &.activeSection i,
-//       &.activeSection a {
-//         // background-color: rgba($independece, .7);
-//         color: mat-color($primary);
-//       }
-//       .nav-icon {
-//         height: 100%;
-//         flex: 0 0 60px;
-//         display: flex;
-//         align-items: center; // vertical align
-//         justify-content: center; // horizontal align
-//         color: mat-color($foreground, text);
-//         padding-right: 5px;
-//       }
-
-//       a {
-//         flex: 0 0 calc(100% - 40px);
-//         // text-align: center;
-//         color: mat-color($foreground, text);
-//       }
-//     }
-//   }
-// }
-
-nav.side {
-  padding-top: 100px;
-  padding-bottom: 100px;
+.aside {
   position: fixed;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0);
-  ul {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    padding-inline-start: 0;
+  &__nav {
     height: 100%;
+    background-color: rgba(mat-color($background, background), .8);
   }
-  li {
-    flex: 1 1 auto;
+  &__button {
+    padding: 0 3px;
+    height: 40px;
+    background-color: rgba(mat-color($background, background), .9);
     display: flex;
-    flex-direction: row;
-    .nav-icon {
-      flex: 1 1 60px;
-      min-width: 60px;
-      max-width: 60px;
-      display: flex;
-      align-items: center; // vertical align
-      justify-content: center; // horizontal align
-      background-color: rgba($independece, 0.5);
+    align-items: center; // vertical align
+    justify-content: center; // horizontal align
+    @include transition(height 1s);
+    @include radius(0 5px 5px 0);
+    &_popup {
+      height: 100%;
+      @include radius(0);
     }
-    .nav-text {
-      display: flex;
-      align-items: center; // vertical align
-      justify-content: center; // horizontal align
-      flex: 1 1 calc(100% - 60px);
-      min-width: calc(100% - 60px);
-      max-width: calc(100% - 60px);
-      padding: 0 16px;
-      opacity: 0;
-    }
-    &:hover {
-      .nav-text {
-        color: mat-color($accent);
-        opacity: 1;
-        background-color: rgba($independece, 1);
-      }
-      .nav-icon {
-        background-color: rgba($independece, 1);
-      }
-    }
-    &.activeSection {
-      .nav-icon {
-        background-color: rgba($independece, 1);
+  }
+}
+
+.nav {
+  justify-content: center;
+  &_type_aside {
+    flex-direction: column;
+    width: 0;
+    padding: 100px 0;
+    @include transition(width 1s);
+    overflow: hidden;
+    .nav {
+      &__item {
+        flex: 1 1 auto;
+        max-height: 70px;
+        color: mat-color($primary);
+        &:hover {
+          color: mat-color($primary, 900);
+        }
+        &_active {
+          color: mat-color($primary, 300);
+        }
       }
     }
+  }
+  &_popup {
+    width: 200px;
   }
 }
 
@@ -224,16 +167,13 @@ main section {
   }
 }
 
-// .activeSection {
-//   color: red;
-// }
 
 .cursor-pointer {
   cursor: pointer;
 }
 
 .background-logo {
-  background: url("/assets/logo.jpg") center center / 100% no-repeat #fff;
+  // background: url("/assets/logo.jpg") center center / 100% no-repeat #fff;
 }
 
 .background-footer {

@@ -1,44 +1,50 @@
-<header class="header" fxLayout="row" fxLayoutAlign="center center">
-  <div class="header__logo" fxFlex="20">Logo</div>
-  <div fxFlex></div>
-  <nav class="header__nav nav" fxFlex="70" fxLayout="row">
-    <ul>
+<header class="header" fxLayout="row">
+  <!-- <header class="header" fxLayout="row" fxLayoutAlign="center center"> -->
+  <div class="header__item header__item_logo" fxFlex.gt-sm="20" fxFlex.lt-md="100" fxLayoutAlign="start center"
+    fxLayoutAlign.lt-md="end center">Logo</div>
+  <div fxFlex fxHide.lt-md></div>
+  <nav class="header__item header__item_nav" fxFlex.gt-sm="70" fxHide.lt-md>
+    <ul class="nav nav_type_header">
       <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
-        [ngClass]="{'activeSection': scrolledSection === i}" fxFlex fxLayout="row" (click)="scrollTo('section' + i)">
+        [ngClass]="{'nav__item_active': scrolledSection === i}" (click)="scrollTo('section' + i)">
         <span class="nav__icon">
           <i [class]="section.icon"></i>
         </span>
         <span class="nav__text">
-          <a>{{section.name}}</a>
+          {{section.name}}
         </span>
       </li>
     </ul>
   </nav>
-
 </header>
 
-
-
-<main>
-
-  <nav class="side">
-    <ul fxLayout="column">
-      <li *ngFor="let section of sections; let i = index;" class="mat-body-1 cursor-pointer"
-        [ngClass]="{'activeSection': scrolledSection === i}" (click)="scrollTo('section' + i)">
-        <div class="nav-icon" fxFlex="60px">
-          <span><i [class]="section.icon"></i></span>
-        </div>
-        <div class="nav-text" fxFlex="calc(100% - 60px)">
-          <a>{{section.name}}</a>
-        </div>
+<aside class="aside" fxHide.gt-sm fxLayout="row" (click)="switchPopup()" (mouseenter)="showPopup(true)"
+  (mouseleave)="showPopup(false)">
+  <nav class="aside__nav" fxFlex="calc(100%-16px)">
+    <ul class="nav nav_type_aside" [ngClass]="{'nav_popup': isAsidePopup}">
+      <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
+        [ngClass]="{'nav__item_active': scrolledSection === i}" (click)="scrollTo('section' + i)">
+        <span class="nav__icon">
+          <i [class]="section.icon"></i>
+        </span>
+        <span class="nav__text">
+          {{section.name}}
+        </span>
       </li>
     </ul>
   </nav>
+  <div class="aside__button" fxFlex="16px" fxFlexAlign="center"
+   [ngClass]="{'aside__button_popup': isAsidePopup}">
+    <span>
+      <i class="fas" [ngClass]="asideButtonClass"></i>
+    </span>
+  </div>
+</aside>
 
+<main>
   <section *ngFor="let section of sections; let i = index;" appScrolling (scrollSection)="onScrollSection(i)"
     [ngStyle]="{'background': section.background, 'height': section.height }" [attr.id]="'section' + i"
     [innerHTML]="section.innerHTML">
-
   </section>
 </main>
 

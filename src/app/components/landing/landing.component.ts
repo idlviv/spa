@@ -11,6 +11,8 @@ export class LandingComponent implements OnInit {
   scrolledSection = 0;
   sections = config.sections;
   constructor() { }
+  isAsidePopup = false;
+  asideButtonClass = 'fa-angle-right';
 
   ngOnInit() {
 
@@ -23,5 +25,15 @@ export class LandingComponent implements OnInit {
   scrollTo(elementId) {
     const element = document.getElementById(elementId);
     element.scrollIntoView({behavior: 'smooth'});
+  }
+
+  switchPopup() {
+    this.isAsidePopup = !this.isAsidePopup;
+    this.asideButtonClass = this.isAsidePopup ? 'fa-angle-left' : 'fa-angle-right';
+  }
+
+  showPopup(visible) {
+    this.isAsidePopup = visible;
+    this.asideButtonClass = this.isAsidePopup ? 'fa-angle-left' : 'fa-angle-right';
   }
 }
