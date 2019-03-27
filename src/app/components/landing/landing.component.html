@@ -42,9 +42,22 @@
 </aside>
 
 <main>
-  <section *ngFor="let section of sections; let i = index;" appScrolling (scrollSection)="onScrollSection(i)"
+  <!-- <section *ngFor="let section of sections; let i = index;" appScrolling (scrollSection)="onScrollSection(i)"
     [ngStyle]="{'background': section.background, 'height': section.height }" [attr.id]="'section' + i"
     [innerHTML]="section.innerHTML">
+  </section> -->
+
+  <section id='section0' appScrolling (scrollSection)="onScrollSection(0)">
+    <h1 class="mat-display-2">About</h1><p class="mat-body-1">Some text about</p>
+  </section>
+  <section id='section1' appScrolling (scrollSection)="onScrollSection(1)">
+    <h1 class="mat-display-2">Projects</h1><p class="mat-body-1">Some text about</p>
+  </section>
+  <section id='section2' appScrolling (scrollSection)="onScrollSection(2)">
+    <h1 class="mat-display-2">Portfolio</h1><p class="mat-body-1">Some text about</p>
+  </section>
+  <section id='section3' appScrolling (scrollSection)="onScrollSection(3)">
+    <h1 class="mat-display-2">Contacts</h1><p class="mat-body-1">Some text about</p>
   </section>
 </main>
 
