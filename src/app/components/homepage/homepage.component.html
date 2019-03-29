@@ -55,19 +55,19 @@
     </section>
 
 
-    <section id='section1' appOnScrollAnimation="effect" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(1)">
+    <section id='section1' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(1)">
       <div class="section section_projects">
           <h1 class="section__header mat-display-2">Projects</h1>
           <p class="section__text mat-body-1">Some text about</p>
       </div>
     </section>
-    <section id='section2' class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(2)">
+    <section id='section2' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(2)">
       <div class="section section_portfolio">
           <h1 class="section__header mat-display-2">Portfolio</h1>
           <p class="section__text mat-body-1">Some text about</p>
       </div>
     </section>
-    <section id='section3' class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(3)">
+    <section id='section3' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(3)">
       <div class="section section_contacts">
           <h1 class="section__header mat-display-2">Contacts</h1>
           <p class="section__text mat-body-1">Some text about</p>

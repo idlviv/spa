@@ -72,48 +72,41 @@ export class OnScrollAnimationDirective {
   //   player.play();
   // }
 
-  @Input('effect') effect: boolean;
+  @Input('appOnScrollAnimation') appOnScrollAnimation;
 
   constructor(
     private builder: AnimationBuilder,
     private el: ElementRef
   ) { }
 
-  private setEffect(effect): AnimationMetadata[] {
-    if (effect === 'fade') {
-      if (!this.stateNeeded) {
-        return [
-          style({ opacity: '*' }),
-          animate('400ms ease-in', style({ opacity: 0 })),
-        ];
-      } else {
-        return [
-          style({ opacity: 0 }),
-          animate('400ms ease-in', style({ opacity: 1 })),
-        ];
-      }
-
-    } else if (effect === 'appear') {
+  private slideIn(): AnimationMetadata[] {
       return [
-        trigger('scrollAnimation', [
-          state('show', style({
+        style({
+          opacity: 0,
+          transform: 'translate(-100%, 0)'
+        }),
+        animate('1000ms ease-in',
+          style({
             opacity: 1,
-            transform: 'translateX(0)'
-          })),
-          state('hide', style({
-            opacity: 0,
-            transform: 'translateX(-100%)'
-          })),
-          transition('show => hide', animate('700ms ease-out')),
-          transition('hide => show', animate('700ms ease-in'))
-        ])
+            transform: 'translate(0, 0)'
+          })
+        ),
       ];
-    } else if (effect === 'fadeIn') {
+  }
+
+  private slideOut(): AnimationMetadata[] {
       return [
-        style({ opacity: 0 }),
-        animate('400ms ease-in', style({ opacity: 1 })),
+        style({
+          opacity: 1,
+          transform: 'translate(0, 0)'
+        }),
+        animate('1000ms ease-in',
+          style({
+            opacity: 0,
+            transform: 'translate(-100%, 0)'
+          })
+        ),
       ];
-    }
   }
 
   private fadeIn(): AnimationMetadata[] {
@@ -151,16 +144,24 @@ export class OnScrollAnimationDirective {
         this.player.destroy();
       }
       let metadata;
-    if (effect === 'fadeIn') {
-      metadata = this.fadeIn();
+      if (effect === 'fadeIn') {
+        metadata = this.fadeIn();
 
-    }
-    if (effect === 'fadeOut') {
-      metadata = this.fadeOut();
-    }
+      }
+      if (effect === 'fadeOut') {
+        metadata = this.fadeOut();
+      }
+
+      if (effect === 'slideIn') {
+        metadata = this.slideIn();
+      }
+
+      if (effect === 'slideOut') {
+        metadata = this.slideOut();
+      }
 
       // const metadata = this.setEffect(this.effect);
-  
+
       const factory = this.builder.build(metadata);
       const player = factory.create(this.el.nativeElement);
       player.play();
@@ -196,7 +197,7 @@ export class OnScrollAnimationDirective {
     // }
 
     if (this.isElementOnScreen(this.el.nativeElement)) {
-      this.doAnimation('fadeIn');
+      this.doAnimation(this.appOnScrollAnimation);
       // this.scrolled.emit('fadeIn');
     } else {
       this.doAnimation('fadeOut');
