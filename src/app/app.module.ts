@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
-import { LandingModule } from './components/landing/landing.module';
+import { HomepageModule } from './components/homepage/homepage.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { LandingModule } from './components/landing/landing.module';
   imports: [
     BrowserModule,
     MaterialModule,
-    LandingModule
+    HomepageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

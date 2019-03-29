@@ -46,6 +46,10 @@ a:active {
   color: inherit;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .nav {
   padding: 0;
   margin: 0;
@@ -78,6 +82,7 @@ a:active {
 }
 
 .header {
+  z-index: 2;
   position: fixed;
   width: 100%;
   height: 60px;
@@ -158,27 +163,21 @@ a:active {
   }
 }
 
-main section {
-  padding: 70px 0 0 100px;
-  height: 100vh;
-  background-color: $background-lighter;
-  &:nth-child(even) {
-    background-color: $background-darker;
+.homepage {
+  &__section {
+    padding: 70px 0 0 100px;
+    height: 100vh;
+    background-color: $background-lighter;
+    &:nth-child(even) {
+      background-color: $background-darker;
+    }
+    &_start {
+      background: url('/assets/logo.jpg') center center / cover no-repeat #FFF;
+    }
   }
 }
 
-#section0 {
-  background: url('/assets/logo.jpg') center center / cover no-repeat #FFF;
-}
-
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.background-logo {
-  // background: url("/assets/logo.jpg") center center / 100% no-repeat #fff;
-}
-
-.background-footer {
+img {
+  width: auto;
+  height: 200px;
 }

@@ -5,14 +5,11 @@ import { Directive, HostListener, ElementRef, OnInit, Input, Output, EventEmitte
 })
 export class ScrollingDirective implements OnInit {
 
-  @Output() scrollSection = new EventEmitter();
+  @Output() elementOnScreen = new EventEmitter();
 
   constructor(private elementRef: ElementRef) { }
 
   ngOnInit() {
-    // if (this.isElementOnScreen(this.elementRef.nativeElement)) {
-    //   this.scrollSection.emit(this.elementRef);
-    // }
   }
 
   isElementOnScreen(elem) {
@@ -31,12 +28,11 @@ export class ScrollingDirective implements OnInit {
     }
   }
 
-
   @HostListener('window:scroll', ['$event.target'])
-    onScroll() {
-      if (this.isElementOnScreen(this.elementRef.nativeElement)) {
-        this.scrollSection.emit();
-      }
+  onScroll() {
+    if (this.isElementOnScreen(this.elementRef.nativeElement)) {
+      this.elementOnScreen.emit();
     }
+  }
 
 }
