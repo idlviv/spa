@@ -118,12 +118,12 @@ a:active {
   height: 100vh;
   &__nav {
     height: 100%;
-    background-color: rgba(mat-color($background, background), .8);
+    background-color: rgba(mat-color($background, background), 0.8);
   }
   &__button {
     padding: 0 3px;
     height: 40px;
-    background-color: rgba(mat-color($background, background), .9);
+    background-color: rgba(mat-color($background, background), 0.9);
     display: flex;
     align-items: center; // vertical align
     justify-content: center; // horizontal align
@@ -165,19 +165,30 @@ a:active {
 
 .homepage {
   &__section {
-    padding: 70px 0 0 100px;
-    height: 100vh;
+    padding: 70px 100px 0 100px;
+    min-height: 100vh;
     background-color: $background-lighter;
     &:nth-child(even) {
       background-color: $background-darker;
     }
     &_start {
-      background: url('/assets/logo.jpg') center center / cover no-repeat #FFF;
+      background: url("/assets/logo.jpg") center center / cover no-repeat #fff;
     }
   }
 }
 
-img {
-  width: auto;
-  height: 200px;
+.gallery {
+  &__item {
+    padding: 2rem;
+
+  }
+  &__image {
+    width: auto;
+    &_size_small {
+      height: 40vh;
+    }
+    &_size_big {
+      height: 70vh;
+    }
+  }
 }

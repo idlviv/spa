@@ -1,80 +1,109 @@
 <header class="header" fxLayout="row">
-    <!-- <header class="header" fxLayout="row" fxLayoutAlign="center center"> -->
-    <div class="header__item header__item_logo" fxFlex.gt-sm="20" fxFlex.lt-md="100" fxLayoutAlign="start center"
-      fxLayoutAlign.lt-md="end center">Logo</div>
-    <div fxFlex fxHide.lt-md></div>
-    <nav class="header__item header__item_nav" fxFlex.gt-sm="70" fxHide.lt-md>
-      <ul class="nav nav_type_header">
-        <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
-          [ngClass]="{'nav__item_active': elementOnScreen === i}" (click)="scrollTo('section' + i)">
-          <span class="nav__icon">
-            <i [class]="section.icon"></i>
-          </span>
-          <span class="nav__text">
-            {{section.name}}
-          </span>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  
-  <aside class="aside" fxHide.gt-sm fxLayout="row" (click)="switchPopup()" (mouseenter)="showPopup(true)"
-    (mouseleave)="showPopup(false)">
-    <nav class="aside__nav" fxFlex="calc(100%-16px)">
-      <ul class="nav nav_type_aside" [ngClass]="{'nav_popup': isAsidePopup}">
-        <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
-          [ngClass]="{'nav__item_active': elementOnScreen === i}" (click)="scrollTo('section' + i)">
-          <span class="nav__icon">
-            <i [class]="section.icon"></i>
-          </span>
-          <span class="nav__text">
-            {{section.name}}
-          </span>
-        </li>
-      </ul>
-    </nav>
-    <div class="aside__button" fxFlex="16px" fxFlexAlign="center"
-     [ngClass]="{'aside__button_popup': isAsidePopup}">
-      <span>
-        <i class="fas" [ngClass]="asideButtonClass"></i>
-      </span>
-    </div>
-  </aside>
-  
-  <main class="homepage">
-    <!-- <section *ngFor="let section of sections; let i = index;" appScrolling (elementOnScreen)="onElementOnScreen(i)"
+  <!-- <header class="header" fxLayout="row" fxLayoutAlign="center center"> -->
+  <div class="header__item header__item_logo" fxFlex.gt-sm="20" fxFlex.lt-md="100" fxLayoutAlign="start center"
+    fxLayoutAlign.lt-md="end center">Logo</div>
+  <div fxFlex fxHide.lt-md></div>
+  <nav class="header__item header__item_nav" fxFlex.gt-sm="70" fxHide.lt-md>
+    <ul class="nav nav_type_header">
+      <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
+        [ngClass]="{'nav__item_active': elementOnScreen === i}" (click)="scrollTo('section' + i)">
+        <span class="nav__icon">
+          <i [class]="section.icon"></i>
+        </span>
+        <span class="nav__text">
+          {{section.name}}
+        </span>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<aside class="aside" fxHide.gt-sm fxLayout="row" (click)="switchPopup()" (mouseenter)="showPopup(true)"
+  (mouseleave)="showPopup(false)">
+  <nav class="aside__nav" fxFlex="calc(100%-16px)">
+    <ul class="nav nav_type_aside" [ngClass]="{'nav_popup': isAsidePopup}">
+      <li class="nav__item mat-body-1 cursor-pointer" *ngFor="let section of sections; let i = index;"
+        [ngClass]="{'nav__item_active': elementOnScreen === i}" (click)="scrollTo('section' + i)">
+        <span class="nav__icon">
+          <i [class]="section.icon"></i>
+        </span>
+        <span class="nav__text">
+          {{section.name}}
+        </span>
+      </li>
+    </ul>
+  </nav>
+  <div class="aside__button" fxFlex="16px" fxFlexAlign="center" [ngClass]="{'aside__button_popup': isAsidePopup}">
+    <span>
+      <i class="fas" [ngClass]="asideButtonClass"></i>
+    </span>
+  </div>
+</aside>
+
+<main class="homepage">
+  <!-- <section *ngFor="let section of sections; let i = index;" appScrolling (elementOnScreen)="onElementOnScreen(i)"
       [ngStyle]="{'background': section.background, 'height': section.height }" [attr.id]="'section' + i"
       [innerHTML]="section.innerHTML">
     </section> -->
-  
-    <section id='section0' class="homepage__section homepage__section_start" appScrolling (elementOnScreen)="onElementOnScreen(0)">
-      <div class="section section_start">
-          <h1 class="section__header mat-display-2">About</h1>
-          <p class="section__text mat-body-1">Some text about</p>
-      </div>
-    </section>
+
+  <section id='section0' class="homepage__section homepage__section_start" appScrolling
+    (elementOnScreen)="onElementOnScreen(0)">
+    <div class="section section_start">
+      <h1 class="section__header mat-display-2">About</h1>
+      <p class="section__text mat-body-1">Some text about</p>
+    </div>
+  </section>
 
 
-    <section id='section1' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(1)">
-      <div class="section section_projects">
-          <h1 class="section__header mat-display-2">Projects</h1>
-          <p class="section__text mat-body-1">Some text about</p>
+  <section id='section1' class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(1)">
+    <div class="section section_projects">
+      <h1 class="section__header mat-display-2">Projects</h1>
+      <p class="section__text mat-body-1">Some text about</p>
+      <div class="section__gallery">
+        <div class="gallery" fxLayout="row wrap">
+          <div class="gallery__item" fxFlex="50" fxLayoutAlign="center center">
+            <img class="gallery__image_size_small" [appOnScrollAnimation]="'fade'" src="/assets/001.jpg" alt="project1">
+          </div>
+
+          <div class="gallery__item" fxFlex="50" fxLayoutAlign="center center">
+            <img class="gallery__image_size_small" [appOnScrollAnimation]="'fade'" src="/assets/002.jpg" alt="project2">
+          </div>
+
+          <div class="gallery__item" fxFlex="50" fxLayoutAlign="center center">
+            <img class="gallery__image_size_small" [appOnScrollAnimation]="'fade'" src="/assets/003.jpg" alt="project5">
+          </div>
+          <div class="gallery__item" fxFlex="50" fxLayoutAlign="center center">
+              <img class="gallery__image_size_small" [appOnScrollAnimation]="'fade'" src="/assets/003.jpg" alt="project5">
+            </div>
+        </div>
       </div>
-    </section>
-    <section id='section2' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(2)">
-      <div class="section section_portfolio">
-          <h1 class="section__header mat-display-2">Portfolio</h1>
-          <p class="section__text mat-body-1">Some text about</p>
-      </div>
-    </section>
-    <section id='section3' [appOnScrollAnimation]="'fadeIn'" class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(3)">
-      <div class="section section_contacts">
-          <h1 class="section__header mat-display-2">Contacts</h1>
-          <p class="section__text mat-body-1">Some text about</p>
-      </div>
-    </section>
 
 
-  </main>
-  
-  <footer></footer>
+    </div>
+  </section>
+  <section id='section2' class="homepage__section" appScrolling (elementOnScreen)="onElementOnScreen(2)">
+    <div class="section section_portfolio">
+      <h1 class="section__header mat-display-2">Portfolio</h1>
+      <p class="section__text mat-body-1">Some text about</p>
+      <div class="section__gallery">
+        <div class="gallery" fxLayout="row wrap">
+          <div fxFlex="25"></div>
+          <div class="gallery__item" fxFlex="50" fxLayoutAlign="center center">
+            <img class="gallery__image_size_big" [appOnScrollAnimation]="'slide'" src="/assets/004-big.jpg" alt="portfolio">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id='section3' [appOnScrollAnimation]="'fade'" class="homepage__section" appScrolling
+    (elementOnScreen)="onElementOnScreen(3)">
+    <div class="section section_contacts">
+      <h1 class="section__header mat-display-2">Contacts</h1>
+      <p class="section__text mat-body-1">Some text about</p>
+    </div>
+  </section>
+
+
+</main>
+
+<footer></footer>

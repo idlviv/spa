@@ -8,78 +8,26 @@ import {
   AnimationPlayer,
   AnimationBuilder,
   AnimationMetadata,
-  AnimationTriggerMetadata
 } from '@angular/animations';
-import { sa } from '@angular/core/src/render3';
 
 @Directive({
   selector: '[appOnScrollAnimation]',
-  // animations: [
-  //   trigger('scrollAnimation', [
-  //     state('show', style({
-  //       opacity: 1,
-  //       transform: "translateX(0)"
-  //     })),
-  //     state('hide',   style({
-  //       opacity: 0,
-  //       transform: "translateX(-100%)"
-  //     })),
-  //     transition('show => hide', animate('700ms ease-out')),
-  //     transition('hide => show', animate('700ms ease-in'))
-  //   ])
-  // ]
-
 })
+
 export class OnScrollAnimationDirective {
   player: AnimationPlayer;
-  currentEffect: 'fadeOut';
-  stateNeeded = true;
-  @Output() scrolled = new EventEmitter();
+  currentAppOnScrollAnimation: string;
+  forwardAnimationDirection: boolean;
 
-  // @Input()
-  // set show(show: boolean) {
-  //   if (this.player) {
-  //     this.player.destroy();
-  //   }
-
-  //   const metadata = show ? this.fadeIn() : this.fadeOut();
-
-  //   const factory = this.builder.build(metadata);
-  //   const player = factory.create(this.el.nativeElement);
-
-  //   player.play();
-  // }
-
-  // @Input()
-  // set effect(effect: string) {
-  //   if (this.player) {
-  //     this.player.destroy();
-  //   }
-  //   let metadata;
-  //   if (effect === 'fadeIn') {
-  //     metadata = this.fadeIn();
-
-  //   }
-  //   if (effect === 'fadeOut') {
-  //     metadata = this.fadeOut();
-  //   }
-
-  //   // const metadata = effect ? this.fadeIn() : this.fadeOut();
-  //   console.log('effect', effect);
-  //   const factory = this.builder.build(metadata);
-  //   const player = factory.create(this.el.nativeElement);
-
-  //   player.play();
-  // }
-
-  @Input('appOnScrollAnimation') appOnScrollAnimation;
+  @Input('appOnScrollAnimation') appOnScrollAnimation: string;
 
   constructor(
     private builder: AnimationBuilder,
     private el: ElementRef
   ) { }
 
-  private slideIn(): AnimationMetadata[] {
+  private slide(forwardAnimationDirection: boolean): AnimationMetadata[] {
+    if (forwardAnimationDirection) {
       return [
         style({
           opacity: 0,
@@ -92,9 +40,7 @@ export class OnScrollAnimationDirective {
           })
         ),
       ];
-  }
-
-  private slideOut(): AnimationMetadata[] {
+    } else {
       return [
         style({
           opacity: 1,
@@ -107,75 +53,49 @@ export class OnScrollAnimationDirective {
           })
         ),
       ];
-  }
-
-  private fadeIn(): AnimationMetadata[] {
-    return [
-      style({ opacity: 0 }),
-      animate('400ms ease-in', style({ opacity: 1 })),
-    ];
-  }
-
-  private fadeOut(): AnimationMetadata[] {
-    return [
-      style({ opacity: '*' }),
-      animate('400ms ease-in', style({ opacity: 0 })),
-    ];
-  }
-
-  isElementAppear(elem) {
-    const box = elem.getBoundingClientRect();
-    const elementTop = box.top;
-    const elementBottom = box.bottom;
-    if (elementTop <= innerHeight - innerHeight * .4) {
-      return true;
-    } else {
-      return false;
     }
 
   }
 
-  doAnimation(effect) {
-    if (this.currentEffect === effect) {
-      return;
+  private fade(forwardAnimationDirection: boolean): AnimationMetadata[] {
+    if (forwardAnimationDirection) {
+      return [
+        style({ opacity: 0 }),
+        animate('400ms ease-in', style({ opacity: 1 })),
+      ];
     } else {
+      return [
+        style({ opacity: '*' }),
+        animate('400ms ease-in', style({ opacity: 0 })),
+      ];
+    }
+
+  }
+
+  doAnimation(appOnScrollAnimation: string, forwardAnimationDirection: boolean) {
+    if (
+      !this.currentAppOnScrollAnimation ||
+      this.currentAppOnScrollAnimation !== appOnScrollAnimation ||
+      this.forwardAnimationDirection !== forwardAnimationDirection) {
 
       if (this.player) {
         this.player.destroy();
       }
-      let metadata;
-      if (effect === 'fadeIn') {
-        metadata = this.fadeIn();
 
-      }
-      if (effect === 'fadeOut') {
-        metadata = this.fadeOut();
-      }
-
-      if (effect === 'slideIn') {
-        metadata = this.slideIn();
-      }
-
-      if (effect === 'slideOut') {
-        metadata = this.slideOut();
-      }
-
-      // const metadata = this.setEffect(this.effect);
+      const metadata = this[appOnScrollAnimation](forwardAnimationDirection);
 
       const factory = this.builder.build(metadata);
       const player = factory.create(this.el.nativeElement);
       player.play();
-      this.currentEffect = effect;
+      this.currentAppOnScrollAnimation = appOnScrollAnimation;
+      this.forwardAnimationDirection = forwardAnimationDirection;
+    } else {
+      return;
     }
   }
 
-  isElementOnScreen(elem) {
-    // elem.getBoundingClientRect(); видима обасть екрану до елемента
-    // pageYOffset верх сторінки до верху видимой обасті
-    // innerHeight висота видимої області
+  isElementOnScreen(elem: ElementRef['nativeElement']) {
     const box = elem.getBoundingClientRect();
-    // const screenTop = pageYOffset;
-    // const screenBottom = pageYOffset + innerHeight;
     const elementTop = box.top;
     const elementBottom = box.bottom;
     if (elementBottom > 0 && elementTop <= innerHeight - innerHeight * .4) {
@@ -187,34 +107,10 @@ export class OnScrollAnimationDirective {
 
   @HostListener('window:scroll', ['$event.target'])
   onScroll() {
-    const componentPosition = this.el.nativeElement.offsetTop;
-    const scrollPosition = window.pageYOffset;
-
-    // if (scrollPosition >= componentPosition) {
-    //   this.scrolled.emit('fadeIn');
-    // } else {
-    //   this.scrolled.emit('fadeOut');
-    // }
-
     if (this.isElementOnScreen(this.el.nativeElement)) {
-      this.doAnimation(this.appOnScrollAnimation);
-      // this.scrolled.emit('fadeIn');
+      this.doAnimation(this.appOnScrollAnimation, true);
     } else {
-      this.doAnimation('fadeOut');
-
-      // this.scrolled.emit('fadeOut');
+      this.doAnimation(this.appOnScrollAnimation, false);
     }
   }
-  // checkScroll() {
-  //   const componentPosition = this.el.nativeElement.offsetTop;
-  //   const scrollPosition = window.pageYOffset;
-
-  //   if (scrollPosition >= componentPosition) {
-  //     this.state = 'show';
-  //   } else {
-  //     this.state = 'hide';
-  //   }
-
-  // }
-
 }
