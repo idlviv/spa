@@ -180,15 +180,20 @@ a:active {
 .gallery {
   &__item {
     padding: 2rem;
-
-  }
-  &__image {
-    width: auto;
     &_size_small {
-      height: 40vh;
+      max-height: 40vh;
     }
     &_size_big {
-      height: 70vh;
+      max-height: 70vh;
     }
   }
+  &__image {
+    // width: auto;
+
+  }
+}
+
+.responsive-image {
+  height: 100%;
+  width: auto;
 }
