@@ -114,6 +114,7 @@ a:active {
 }
 
 .aside {
+  z-index: 2;
   position: fixed;
   height: 100vh;
   &__nav {
@@ -166,6 +167,9 @@ a:active {
 .homepage {
   &__section {
     padding: 70px 100px 0 100px;
+    @include lt-md {
+      padding: 1rem 1rem 0 1rem;
+    }
     min-height: 100vh;
     background-color: $background-lighter;
     &:nth-child(even) {
@@ -178,22 +182,20 @@ a:active {
 }
 
 .gallery {
+
   &__item {
     padding: 2rem;
-    &_size_small {
-      max-height: 40vh;
-    }
-    &_size_big {
-      max-height: 70vh;
+    @include xs {
+    padding: 2rem 0;
     }
   }
   &__image {
-    // width: auto;
-
+    height: auto;
+    max-width: 100%;
   }
 }
 
 .responsive-image {
-  height: 100%;
-  width: auto;
+  height: auto;
+  max-width: 100%;
 }
