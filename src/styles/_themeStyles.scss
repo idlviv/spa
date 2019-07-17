@@ -50,6 +50,122 @@ a:active {
   cursor: pointer;
 }
 
+$space-gt-md: 12px;
+$space-md: 12px;
+$space-sm: 8px;
+$space-xs: 8px;
+
+.container {
+  @include gt-md {
+    padding: $space-gt-md;
+  }
+  @include md {
+    padding: $space-md;
+  }
+  @include sm {
+    padding: $space-sm;
+  }
+  @include xs {
+    // padding: 8px 0;
+    padding: $space-xs;
+  }
+
+  &_column {
+    height: 100%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include gt-md {
+    margin: -($space-gt-md);
+  }
+  @include md {
+    margin: -($space-md);
+  }
+  @include sm {
+    margin: -($space-sm);
+  }
+  @include xs {
+    // margin: -8px 0;
+    margin: -($space-xs);
+  }
+}
+
+.column {
+  display: flex;
+  flex-wrap: wrap;
+
+  @include gt-md {
+    margin: -($space-gt-md);
+    height: calc(100% + (2 * #{$space-gt-md}));
+  }
+  @include md {
+    margin: -($space-md);
+    height: calc(100% + (2 * #{$space-md}));
+  }
+  @include sm {
+    margin: -($space-sm);
+    height: calc(100% + (2 * #{$space-sm}));
+  }
+  @include xs {
+    margin: -($space-xs);
+    height: calc(100% + (2 * #{$space-xs}));
+  }
+}
+
+.cell {
+  @include gt-md {
+    padding: $space-gt-md;
+  }
+  @include md {
+    padding: $space-md;
+  }
+  @include sm {
+    padding: $space-sm;
+  }
+  @include xs {
+    // padding: 8px 0;
+    padding: $space-xs;
+  }
+}
+
+.item {
+  @include gt-md {
+    @include first {
+      padding-left: 0;
+    }
+    @include last {
+      padding-right: 0;
+    }
+    padding: 0 $space-gt-md;
+  }
+  @include md {
+    @include first {
+      padding-left: 0;
+    }
+    @include last {
+      padding-right: 0;
+    }
+    padding: 0 $space-md;
+  }
+  @include sm {
+    @include first {
+      padding-left: 0;
+    }
+    @include last {
+      padding-right: 0;
+    }
+    padding: 0 $space-sm;
+  }
+  @include xs {
+    padding: 0;
+    // padding: 0 8px;
+  }
+}
+
 .nav {
   padding: 0;
   margin: 0;
@@ -185,7 +301,7 @@ a:active {
   &__item {
     padding: 2rem;
     @include xs {
-    padding: 2rem 0;
+      padding: 2rem 0;
     }
   }
   &__image {
@@ -197,4 +313,26 @@ a:active {
 .responsive-image {
   height: auto;
   max-width: 100%;
+}
+
+.chat {
+  background-color: rgba(mat-color($background, background), 0.8);
+  z-index: 5;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 400px;
+  height: 70%;
+  border-radius: 16px 8px 8px 16px;
+  // border: 2px solid mat-color($background, status-bar) !important;
+
+  &__header {
+    // background-color: rgb(231, 228, 228);
+  }
+  &__main {
+    background-color: rgb(218, 211, 211);
+  }
+  &__footer {
+    // background-color: rgb(192, 196, 198);
+  }
 }

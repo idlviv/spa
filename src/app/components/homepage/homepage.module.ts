@@ -5,6 +5,7 @@ import { MaterialModule } from '../.././material.module';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatModule } from '../chat/chat.module';
 
 @NgModule({
   imports: [
@@ -12,9 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MaterialModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ChatModule,
   ],
   exports: [
-    HomepageComponent
+    HomepageComponent,
   ],
   declarations: [
     HomepageComponent,
