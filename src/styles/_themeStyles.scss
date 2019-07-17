@@ -96,7 +96,7 @@ $space-xs: 8px;
 
 .column {
   display: flex;
-  flex-wrap: wrap;
+  // flex-wrap: wrap;
 
   @include gt-md {
     margin: -($space-gt-md);
@@ -331,8 +331,10 @@ $space-xs: 8px;
   }
   &__main {
     background-color: rgb(218, 211, 211);
+
   }
   &__footer {
     // background-color: rgb(192, 196, 198);
+    min-height: 80px;
   }
 }
