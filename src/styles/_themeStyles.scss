@@ -327,14 +327,11 @@ $space-xs: 8px;
   // border: 2px solid mat-color($background, status-bar) !important;
 
   &__header {
-    // background-color: rgb(231, 228, 228);
   }
   &__main {
     background-color: rgb(218, 211, 211);
 
   }
   &__footer {
-    // background-color: rgb(192, 196, 198);
-    min-height: 80px;
   }
 }
