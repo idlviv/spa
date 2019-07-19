@@ -335,7 +335,23 @@ $space-xs: 8px;
   &__main {
     background-color: rgb(218, 211, 211);
   }
+
   &__footer {
+      @include gt-md {
+    flex: 0 0 calc(64px + (2 * #{$space-gt-md}));
+  }
+  @include md {
+    flex: 0 0 calc(64px + (2 * #{$space-md}));
+  }
+  @include sm {
+    flex: 0 0 calc(64px + (2 * #{$space-sm}));
+  }
+  @include xs {
+    flex: 0 0 calc(64px + (2 * #{$space-xs}));
+  }
+    form, mat-form-field  {
+      width: 100%;
+    }
   }
 
   // .chatHeader {

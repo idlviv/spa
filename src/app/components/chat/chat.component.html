@@ -20,15 +20,29 @@
         </div> -->
       </div>
     </div>
-    <div class="container chat__main" fxFlex="1 1 auto">
-      <div class="row">
-        <div class="cell"></div>
+    <div class="container chatMain chat__main" fxFlex="1 1 auto">
+      <div class="row" fxLayout="row">
+        <div class="cell" fxFlex></div>
       </div>
 
     </div>
-    <div class="container chat__footer" fxFlex="0 0 80px">
-      <div class="row">
-        <div class="cell"></div>
+    <div class="container chatFooter chat__footer cursor-pointer" (click)="sendMessage()">
+      <div class="row" fxLayout="row">
+        <div class="cell chatFooter__input" fxFlex="1 1 auto" fxLayoutAlign="center center">
+        <form [formGroup]="messageForm">
+          <mat-form-field>
+            <input matInput placeholder="Повідомлення" formControlName="message">
+            <mat-error *ngIf="messageForm.get('message').errors?.required &&
+                                                              messageForm.get('message').touched">
+              Введіть повідомлення
+            </mat-error>
+          </mat-form-field>
+        </form>
+        </div>
+
+        <div class="cell chatFooter__send" fxFlex="0 0 auto" fxLayoutAlign="center center">
+          <i class="far far fa-paper-plane"></i>
+        </div>
       </div>
 
     </div>
