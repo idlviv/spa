@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material';
+import {
+  MatButtonModule, MatIconModule,
+ } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ScrollingDirective } from './directives/scrolling.directive';
 import { OnScrollAnimationDirective } from './directives/on-scroll-animation.directive';
@@ -15,6 +17,8 @@ import { OnScrollAnimationDirective } from './directives/on-scroll-animation.dir
   imports: [
     FlexLayoutModule,
     MatButtonModule,
+    MatIconModule,
+
     // BrowserModule,
     // BrowserAnimationsModule,
     ],
@@ -22,7 +26,8 @@ import { OnScrollAnimationDirective } from './directives/on-scroll-animation.dir
     FlexLayoutModule,
     ScrollingDirective,
     OnScrollAnimationDirective,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
   ],
 })
 

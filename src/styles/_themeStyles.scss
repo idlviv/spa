@@ -50,6 +50,10 @@ a:active {
   cursor: pointer;
 }
 
+.margin-0 {
+  margin: 0;
+}
+
 $space-gt-md: 12px;
 $space-md: 12px;
 $space-sm: 8px;
@@ -330,8 +334,27 @@ $space-xs: 8px;
   }
   &__main {
     background-color: rgb(218, 211, 211);
-
   }
   &__footer {
   }
+
+  // .chatHeader {
+  //   &__hide {
+  //     @include gt-md {
+  //       flex: 0 0 calc(16px + 2 * #{$space-gt-md});
+  //     }
+  //     @include md {
+  //       margin: -($space-md);
+  //       height: calc(100% + (2 * #{$space-md}));
+  //     }
+  //     @include sm {
+  //       margin: -($space-sm);
+  //       height: calc(100% + (2 * #{$space-sm}));
+  //     }
+  //     @include xs {
+  //       margin: -($space-xs);
+  //       height: calc(100% + (2 * #{$space-xs}));
+  //     }
+  //   }
+  // }
 }

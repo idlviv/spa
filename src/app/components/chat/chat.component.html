@@ -1,9 +1,39 @@
-<section class="chat">
-  <div class="container container_column">
-    <div class="column" fxLayout="column">
-      <div class="cell chat__header" fxFlex="0 1 80px"></div>
-      <div class="cell chat__main" fxFlex="calc(100%-160px)"></div>
-      <div class="cell chat__footer" fxFlex="1 0 80px"></div>
+<section class="container container_column chat">
+  <div class="column" fxLayout="column">
+    <div class="container chatHeader chat__header" fxFlex="0 0 auto">
+      <div class="row" fxLayout="row">
+        <div class="cell chatHeader__title" fxFlex="1 1 auto" fxLayoutAlign="center center">
+          <h2 class="mat-h2 margin-0">Чат</h2>
+        </div>
+        <div class="cell chatHeader__hide cursor-pointer" (click)="hide()" fxFlex="0 0 auto"
+          fxLayoutAlign="center center">
+          <i class="far fa-window-minimize"></i>
+        </div>
+        <div class="cell chatHeader__close cursor-pointer" (click)="disconnect()" fxFlex="0 0 auto"
+          fxLayoutAlign="center center">
+          <i class="far fa-times-circle"></i>
+        </div>
+        <!-- <div class="cell chatHeader__close" fxFlex="40px">
+          <button mat-icon-button (click)="disconnect()" [disabled]="!socketConnected">
+            <mat-icon class="mat-18">close</mat-icon>
+          </button>
+        </div> -->
+      </div>
+    </div>
+    <div class="container chat__main" fxFlex="1 1 auto">
+      <div class="row">
+        <div class="cell"></div>
+      </div>
+
+    </div>
+    <div class="container chat__footer" fxFlex="0 0 80px">
+      <div class="row">
+        <div class="cell"></div>
+      </div>
+
     </div>
   </div>
+  <!-- <div class="cell chat__header" fxFlex="0 1 80px"></div>
+      <div class="cell chat__main" fxFlex="calc(100%-160px)"></div>
+      <div class="cell chat__footer" fxFlex="1 0 80px"></div> -->
 </section>
