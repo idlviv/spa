@@ -20,6 +20,9 @@ $independece: rgb(74, 78, 105);
 $romanSilver: #848c8e;
 $glitter: #e7ecef;
 $babyPowder: #fbfefb;
+$incomingMsg: #acc0d8;
+$outgoingMsg: #cccccc;
+
 
 html {
   font-size: 16px;
@@ -320,7 +323,7 @@ $space-xs: 8px;
 }
 
 .chat {
-  background-color: rgba(mat-color($background, background), 0.8);
+  background-color: rgba(mat-color($background, app-bar), 0.9);
   z-index: 5;
   position: fixed;
   bottom: 16px;
@@ -363,7 +366,7 @@ $space-xs: 8px;
     @include xs {
       flex: 0 0 calc(chat__footer-height + (2 * #{$space-xs}));
     }
-    background-color: rgb(218, 211, 211);
+    background-color: mat-color($background, status-bar);
     overflow: auto;
   }
 
@@ -388,15 +391,18 @@ $space-xs: 8px;
 
   .chatMain {
     &__msg {
-      @include radius(5px);
-      padding: 5px;
+      // @include radius(5px);
+      padding: 8px;
       &_outgoing {
-        background-color: rgb(152, 152, 152);
+        background-color: $outgoingMsg;
         margin-right: 40px;
+        @include radius(10px 12px 12px 0);
       }
       &_incoming {
-        background-color: rgb(125, 168, 187);
+
+        background-color: $incomingMsg;
         margin-left: 40px;
+        @include radius(12px 10px 0 12px);
       }
     }
   }

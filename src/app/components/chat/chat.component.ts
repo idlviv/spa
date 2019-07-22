@@ -11,7 +11,7 @@ export class ChatComponent implements OnInit {
   messageForm: FormGroup;
   msgs: IChatMsg[] = [
     {
-      message: '1 - Lorem Ipsum является текст-заполнитель обычно',
+      message: '1 - Lorem Ipsum является текст-заполнит является текст-заполнитель обычно',
       isOutgoing: true,
     },
     {
