@@ -22,13 +22,18 @@
     </div>
     <div class="container chatMain chat__main" fxFlex="1 1 auto">
       <div class="row" fxLayout="row">
-        <div class="cell" fxFlex></div>
+        <div *ngFor="let msg of msgs" class="cell" fxFlex="100">
+          <span class="chatMain__msg" [ngClass]="msg.isOutgoing ? 'chatMain__msg_outgoing' : 'chatMain__msg_incoming'">
+            <span>{{msg.message}}</span>
+          </span>
+        </div>
       </div>
-
     </div>
-    <div class="container chatFooter chat__footer cursor-pointer" (click)="sendMessage()">
-      <div class="row" fxLayout="row">
-        <div class="cell chatFooter__input" fxFlex="1 1 auto" fxLayoutAlign="center center">
+
+
+  <div class="container chatFooter chat__footer cursor-pointer" (click)="sendMessage()">
+    <div class="row" fxLayout="row">
+      <div class="cell chatFooter__input" fxFlex="1 1 auto" fxLayoutAlign="center center">
         <form [formGroup]="messageForm">
           <mat-form-field>
             <input matInput placeholder="Повідомлення" formControlName="message">
@@ -38,14 +43,14 @@
             </mat-error>
           </mat-form-field>
         </form>
-        </div>
-
-        <div class="cell chatFooter__send" fxFlex="0 0 auto" fxLayoutAlign="center center">
-          <i class="far far fa-paper-plane"></i>
-        </div>
       </div>
 
+      <div class="cell chatFooter__send" fxFlex="0 0 auto" fxLayoutAlign="center center">
+        <i class="far far fa-paper-plane"></i>
+      </div>
     </div>
+
+  </div>
   </div>
   <!-- <div class="cell chat__header" fxFlex="0 1 80px"></div>
       <div class="cell chat__main" fxFlex="calc(100%-160px)"></div>

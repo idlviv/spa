@@ -327,7 +327,7 @@ $space-xs: 8px;
   right: 16px;
   width: 400px;
   height: 70%;
-  border-radius: 16px 8px 8px 16px;
+  @include radius(16px 8px 8px 16px);
   // border: 2px solid mat-color($background, status-bar) !important;
 
   &__header {
@@ -337,40 +337,34 @@ $space-xs: 8px;
   }
 
   &__footer {
-      @include gt-md {
-    flex: 0 0 calc(64px + (2 * #{$space-gt-md}));
-  }
-  @include md {
-    flex: 0 0 calc(64px + (2 * #{$space-md}));
-  }
-  @include sm {
-    flex: 0 0 calc(64px + (2 * #{$space-sm}));
-  }
-  @include xs {
-    flex: 0 0 calc(64px + (2 * #{$space-xs}));
-  }
-    form, mat-form-field  {
+    @include gt-md {
+      flex: 0 0 calc(64px + (2 * #{$space-gt-md}));
+    }
+    @include md {
+      flex: 0 0 calc(64px + (2 * #{$space-md}));
+    }
+    @include sm {
+      flex: 0 0 calc(64px + (2 * #{$space-sm}));
+    }
+    @include xs {
+      flex: 0 0 calc(64px + (2 * #{$space-xs}));
+    }
+    form,
+    mat-form-field {
       width: 100%;
     }
   }
 
-  // .chatHeader {
-  //   &__hide {
-  //     @include gt-md {
-  //       flex: 0 0 calc(16px + 2 * #{$space-gt-md});
-  //     }
-  //     @include md {
-  //       margin: -($space-md);
-  //       height: calc(100% + (2 * #{$space-md}));
-  //     }
-  //     @include sm {
-  //       margin: -($space-sm);
-  //       height: calc(100% + (2 * #{$space-sm}));
-  //     }
-  //     @include xs {
-  //       margin: -($space-xs);
-  //       height: calc(100% + (2 * #{$space-xs}));
-  //     }
-  //   }
-  // }
+  .chatMain {
+    &__msg {
+      @include radius(5px);
+      padding: 5px;
+      &_outgoing {
+        background-color: rgb(152, 152, 152);
+      }
+      &_incoming {
+        background-color: rgb(125, 168, 187);
+      }
+    }
+  }
 }
